@@ -1,0 +1,279 @@
+@import "tailwindcss";
+
+/* EXACT CoinMarketCap Design Tokens */
+:root {
+  /* Colors - using CoinMarketCap's actual CSS variables */
+  --c-color-blue-500: #3861FB;      /* Primary blue - buttons, links */
+  --c-color-green-500: #16C784;     /* Success green - positive changes */
+  --c-color-red-500: #EA3943;       /* Error red - negative changes */
+  --c-color-background-1: #FCFDFE;  /* Light page background */
+  --c-color-background-2: #FFFFFF;  /* Card backgrounds */
+  --c-color-gray-100: #F8FAFD;      /* Lightest gray backgrounds */
+  --c-color-gray-200: #EFF2F5;      /* Light borders and dividers */
+  --c-color-gray-300: #CFD6E4;      /* Medium borders */
+  --c-color-gray-400: #A6B0C3;      /* Medium gray */
+  --c-color-gray-500: #808A9D;      /* Dark gray */
+  --c-color-gray-600: #616E85;      /* Very dark gray */
+  --c-color-text-primary: #0D1421;  /* Main text */
+  --c-color-text-secondary: #616E85; /* Secondary text */
+  --c-color-text-hyperlink: #3861FB; /* Link text */
+  
+  /* Spacing - CoinMarketCap's spacing scale */
+  --c-space-50: 4px;
+  --c-space-100: 8px;
+  --c-space-150: 12px;
+  --c-space-200: 16px;
+  --c-space-250: 20px;
+  --c-space-300: 24px;
+  --c-space-400: 32px;
+  --c-space-500: 40px;
+  --c-space-600: 48px;
+  --c-space-800: 64px;
+  
+  /* Font sizes */
+  --c-font-size-50: 11px;
+  --c-font-size-75: 12px;
+  --c-font-size-100: 14px;
+  --c-font-size-200: 16px;
+  --c-font-size-300: 18px;
+  --c-font-size-400: 20px;
+  --c-font-size-600: 24px;
+  --c-font-size-800: 32px;
+
+  /* Legacy variables for backward compatibility */
+  --cmc-primary: var(--c-color-blue-500);
+  --cmc-green: var(--c-color-green-500);
+  --cmc-red: var(--c-color-red-500);
+  --cmc-background: var(--c-color-background-1);
+  --cmc-white: var(--c-color-background-2);
+  --cmc-border: var(--c-color-gray-200);
+  --cmc-text-primary: var(--c-color-text-primary);
+  --cmc-text-secondary: var(--c-color-text-secondary);
+  --cmc-gray-light: var(--c-color-gray-100);
+  --cmc-gray-200: var(--c-color-gray-200);
+}
+
+/* Apply to body */
+body {
+  background-color: var(--cmc-background);
+  color: var(--cmc-text-primary);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  line-height: 1.5;
+}
+
+/* Exact CoinMarketCap Border Radius Values */
+.cmc-border-radius-sm { border-radius: 4px; }
+.cmc-border-radius-md { border-radius: 8px; }
+.cmc-border-radius-lg { border-radius: 12px; }
+.cmc-border-radius-xl { border-radius: 16px; }
+.cmc-border-radius-pill { border-radius: 40px; }
+
+/* Exact CoinMarketCap Font Sizes */
+.cmc-text-xs { font-size: 11px; line-height: 1.5; }
+.cmc-text-sm { font-size: 12px; line-height: 1.5; }
+.cmc-text-base { font-size: 14px; line-height: 1.5; }
+.cmc-text-md { font-size: 16px; line-height: 1.5; }
+.cmc-text-lg { font-size: 18px; line-height: 1.3; }
+.cmc-text-xl { font-size: 20px; line-height: 1.3; }
+.cmc-text-2xl { font-size: 24px; line-height: 1.3; }
+.cmc-text-3xl { font-size: 32px; line-height: 1.3; }
+
+/* Exact CoinMarketCap Font Weights */
+.cmc-font-light { font-weight: 300; }
+.cmc-font-normal { font-weight: 400; }
+.cmc-font-medium { font-weight: 500; }
+.cmc-font-semibold { font-weight: 600; }
+.cmc-font-bold { font-weight: 700; }
+.cmc-font-black { font-weight: 900; }
+
+/* Exact CoinMarketCap Spacing */
+.cmc-space-sm { gap: 8px; }
+.cmc-space-md { gap: 16px; }
+.cmc-space-lg { gap: 24px; }
+.cmc-space-xl { gap: 32px; }
+
+.cmc-p-sm { padding: 12px; }
+.cmc-p-md { padding: 16px; }
+.cmc-p-lg { padding: 24px; }
+.cmc-p-xl { padding: 32px; }
+
+.cmc-m-sm { margin: 12px; }
+.cmc-m-md { margin: 16px; }
+.cmc-m-lg { margin: 24px; }
+.cmc-m-xl { margin: 32px; }
+
+/* CoinMarketCap Box Shadow */
+.cmc-shadow { box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06); }
+.cmc-shadow-lg { box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); }
+
+/* CoinMarketCap Design Token Utility Classes */
+
+/* Text Colors */
+.text-cmc-primary { color: var(--c-color-blue-500); }
+.text-cmc-green { color: var(--c-color-green-500); }
+.text-cmc-red { color: var(--c-color-red-500); }
+.text-cmc-text-primary { color: var(--c-color-text-primary); }
+.text-cmc-text-secondary { color: var(--c-color-text-secondary); }
+.text-cmc-text-hyperlink { color: var(--c-color-text-hyperlink); }
+
+/* Background Colors */
+.bg-cmc-primary { background-color: var(--c-color-blue-500); }
+.bg-cmc-green { background-color: var(--c-color-green-500); }
+.bg-cmc-red { background-color: var(--c-color-red-500); }
+.bg-cmc-white { background-color: var(--c-color-background-2); }
+.bg-cmc-background { background-color: var(--c-color-background-1); }
+.bg-cmc-gray-light { background-color: var(--c-color-gray-100); }
+.bg-cmc-gray-200 { background-color: var(--c-color-gray-200); }
+.bg-cmc-gray-300 { background-color: var(--c-color-gray-300); }
+
+/* Border Colors */
+.border-cmc-border { border-color: var(--c-color-gray-200); }
+.border-cmc-gray-200 { border-color: var(--c-color-gray-200); }
+.border-cmc-gray-300 { border-color: var(--c-color-gray-300); }
+
+/* Font Sizes using CoinMarketCap scale */
+.text-cmc-xs { font-size: var(--c-font-size-50); }
+.text-cmc-sm { font-size: var(--c-font-size-75); }
+.text-cmc-base { font-size: var(--c-font-size-100); }
+.text-cmc-lg { font-size: var(--c-font-size-200); }
+.text-cmc-xl { font-size: var(--c-font-size-300); }
+.text-cmc-2xl { font-size: var(--c-font-size-400); }
+.text-cmc-3xl { font-size: var(--c-font-size-600); }
+.text-cmc-4xl { font-size: var(--c-font-size-800); }
+
+/* Spacing utilities using CoinMarketCap scale */
+.space-cmc-sm { gap: var(--c-space-100); }
+.space-cmc-md { gap: var(--c-space-200); }
+.space-cmc-lg { gap: var(--c-space-300); }
+.space-cmc-xl { gap: var(--c-space-400); }
+
+.p-cmc-sm { padding: var(--c-space-150); }
+.p-cmc-md { padding: var(--c-space-200); }
+.p-cmc-lg { padding: var(--c-space-300); }
+.p-cmc-xl { padding: var(--c-space-400); }
+
+.m-cmc-sm { margin: var(--c-space-150); }
+.m-cmc-md { margin: var(--c-space-200); }
+.m-cmc-lg { margin: var(--c-space-300); }
+.m-cmc-xl { margin: var(--c-space-400); }
+
+/* Price flash animations */
+@keyframes flash-green {
+  0%, 100% { background-color: transparent; }
+  50% { background-color: rgba(0, 212, 170, 0.2); }
+}
+
+@keyframes flash-red {
+  0%, 100% { background-color: transparent; }
+  50% { background-color: rgba(255, 87, 34, 0.2); }
+}
+
+.flash-green { animation: flash-green 0.5s ease-out; }
+.flash-red { animation: flash-red 0.5s ease-out; }
+
+/* Interactive hover states */
+.hover-cmc-primary:hover { color: var(--cmc-primary); }
+.hover-bg-cmc-gray-light:hover { background-color: var(--cmc-gray-light); }
+
+/* Scrollbar styling for webkit browsers */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--cmc-gray-light);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--cmc-text-secondary);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--cmc-primary);
+}
+
+/* Animated Stats Bar */
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-scroll {
+  animation: scroll 60s linear infinite;
+}
+
+/* Pause animation on hover */
+.animate-scroll:hover {
+  animation-play-state: paused;
+}
+
+/* Bouncing dots for loading/activity indicators */
+@keyframes bounce-dot {
+  0%, 80%, 100% {
+    transform: scale(0);
+  }
+  40% {
+    transform: scale(1);
+  }
+}
+
+.animate-bounce-dot {
+  animation: bounce-dot 1.4s infinite ease-in-out both;
+}
+
+.animate-bounce-dot:nth-child(1) { animation-delay: -0.32s; }
+.animate-bounce-dot:nth-child(2) { animation-delay: -0.16s; }
+
+/* Gradient text animation */
+@keyframes gradient-x {
+  0%, 100% {
+    background-size: 200% 200%;
+    background-position: left center;
+  }
+  50% {
+    background-size: 200% 200%;
+    background-position: right center;
+  }
+}
+
+.animate-gradient-x {
+  animation: gradient-x 3s ease infinite;
+  background: linear-gradient(-45deg, #1652F0, #00D4AA, #1652F0, #00D4AA);
+  background-size: 400% 400%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Floating animation for decorative elements */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Spinning animation */
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 20s linear infinite;
+}

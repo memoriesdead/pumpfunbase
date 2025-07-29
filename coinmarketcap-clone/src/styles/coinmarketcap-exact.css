@@ -1,0 +1,290 @@
+/* CoinMarketCap Exact Color Palette */
+:root {
+  /* Primary Colors */
+  --cmc-primary-blue: #3861FB;
+  --cmc-primary-blue-hover: #2651EB;
+  --cmc-success-green: #16C784;
+  --cmc-error-red: #EA3943;
+  
+  /* Background Colors */
+  --cmc-bg-primary: #FCFDFE;
+  --cmc-bg-secondary: #F8F9FA;
+  --cmc-bg-tertiary: #F0F0F0;
+  --cmc-white: #FFFFFF;
+  
+  /* Text Colors */
+  --cmc-text-primary: #1E1E1E;
+  --cmc-text-secondary: #7C7C7C;
+  --cmc-text-tertiary: #BDBDBD;
+  
+  /* Border Colors */
+  --cmc-border-primary: #E6E6E6;
+  --cmc-border-secondary: #F0F0F0;
+  
+  /* Spacing */
+  --cmc-spacing-xs: 4px;
+  --cmc-spacing-sm: 8px;
+  --cmc-spacing-md: 16px;
+  --cmc-spacing-lg: 24px;
+  --cmc-spacing-xl: 32px;
+  
+  /* Typography */
+  --cmc-font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --cmc-font-size-xs: 11px;
+  --cmc-font-size-sm: 12px;
+  --cmc-font-size-base: 14px;
+  --cmc-font-size-md: 15px;
+  --cmc-font-size-lg: 16px;
+  --cmc-font-size-xl: 18px;
+  --cmc-font-size-2xl: 20px;
+  --cmc-font-size-3xl: 24px;
+  --cmc-font-size-4xl: 32px;
+  
+  /* Border Radius */
+  --cmc-radius-sm: 6px;
+  --cmc-radius-md: 8px;
+  --cmc-radius-lg: 12px;
+  
+  /* Shadows */
+  --cmc-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --cmc-shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07);
+}
+
+/* Global Typography Overrides */
+.cmc-font-inter {
+  font-family: var(--cmc-font-family);
+}
+
+/* Exact Text Sizes */
+.cmc-text-xs {
+  font-size: var(--cmc-font-size-xs);
+  line-height: 16px;
+}
+
+.cmc-text-sm {
+  font-size: var(--cmc-font-size-sm);
+  line-height: 18px;
+}
+
+.cmc-text-base {
+  font-size: var(--cmc-font-size-base);
+  line-height: 20px;
+}
+
+.cmc-text-md {
+  font-size: var(--cmc-font-size-md);
+  line-height: 22px;
+}
+
+.cmc-text-lg {
+  font-size: var(--cmc-font-size-lg);
+  line-height: 24px;
+}
+
+.cmc-text-xl {
+  font-size: var(--cmc-font-size-xl);
+  line-height: 26px;
+}
+
+.cmc-text-2xl {
+  font-size: var(--cmc-font-size-2xl);
+  line-height: 28px;
+}
+
+.cmc-text-3xl {
+  font-size: var(--cmc-font-size-3xl);
+  line-height: 32px;
+}
+
+.cmc-text-4xl {
+  font-size: var(--cmc-font-size-4xl);
+  line-height: 40px;
+}
+
+/* Exact Color Classes */
+.cmc-bg-primary {
+  background-color: var(--cmc-bg-primary);
+}
+
+.cmc-bg-secondary {
+  background-color: var(--cmc-bg-secondary);
+}
+
+.cmc-bg-white {
+  background-color: var(--cmc-white);
+}
+
+.cmc-text-primary {
+  color: var(--cmc-text-primary);
+}
+
+.cmc-text-secondary {
+  color: var(--cmc-text-secondary);
+}
+
+.cmc-text-success {
+  color: var(--cmc-success-green);
+}
+
+.cmc-text-error {
+  color: var(--cmc-error-red);
+}
+
+.cmc-text-blue {
+  color: var(--cmc-primary-blue);
+}
+
+.cmc-border {
+  border: 1px solid var(--cmc-border-primary);
+}
+
+.cmc-border-secondary {
+  border: 1px solid var(--cmc-border-secondary);
+}
+
+/* Exact Button Styles */
+.cmc-btn-primary {
+  background-color: var(--cmc-primary-blue);
+  color: var(--cmc-white);
+  border: none;
+  border-radius: var(--cmc-radius-md);
+  font-weight: 500;
+  transition: background-color 0.2s ease;
+}
+
+.cmc-btn-primary:hover {
+  background-color: var(--cmc-primary-blue-hover);
+}
+
+.cmc-btn-secondary {
+  background-color: transparent;
+  color: var(--cmc-text-primary);
+  border: 1px solid var(--cmc-border-primary);
+  border-radius: var(--cmc-radius-md);
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.cmc-btn-secondary:hover {
+  background-color: var(--cmc-bg-secondary);
+  border-color: var(--cmc-primary-blue);
+}
+
+/* Layout Classes */
+.cmc-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.cmc-sidebar-left {
+  width: 330px;
+  flex-shrink: 0;
+}
+
+.cmc-sidebar-right {
+  width: 330px;
+  flex-shrink: 0;
+}
+
+.cmc-content-center {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Card Styles */
+.cmc-card {
+  background: var(--cmc-white);
+  border: 1px solid var(--cmc-border-primary);
+  border-radius: var(--cmc-radius-lg);
+  padding: var(--cmc-spacing-lg);
+}
+
+.cmc-card-sm {
+  padding: var(--cmc-spacing-md);
+}
+
+/* Exact Spacing */
+.cmc-gap-xs { gap: var(--cmc-spacing-xs); }
+.cmc-gap-sm { gap: var(--cmc-spacing-sm); }
+.cmc-gap-md { gap: var(--cmc-spacing-md); }
+.cmc-gap-lg { gap: var(--cmc-spacing-lg); }
+.cmc-gap-xl { gap: var(--cmc-spacing-xl); }
+
+.cmc-p-xs { padding: var(--cmc-spacing-xs); }
+.cmc-p-sm { padding: var(--cmc-spacing-sm); }
+.cmc-p-md { padding: var(--cmc-spacing-md); }
+.cmc-p-lg { padding: var(--cmc-spacing-lg); }
+.cmc-p-xl { padding: var(--cmc-spacing-xl); }
+
+.cmc-m-xs { margin: var(--cmc-spacing-xs); }
+.cmc-m-sm { margin: var(--cmc-spacing-sm); }
+.cmc-m-md { margin: var(--cmc-spacing-md); }
+.cmc-m-lg { margin: var(--cmc-spacing-lg); }
+.cmc-m-xl { margin: var(--cmc-spacing-xl); }
+
+/* Line Clamping */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Sticky Positioning */
+.cmc-sticky {
+  position: sticky;
+  top: 96px; /* Adjust based on header height */
+}
+
+/* Hover Effects */
+.cmc-hover-lift {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.cmc-hover-lift:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--cmc-shadow-md);
+}
+
+/* Focus States */
+.cmc-focus:focus {
+  outline: none;
+  border-color: var(--cmc-primary-blue);
+  box-shadow: 0 0 0 3px rgba(56, 97, 251, 0.1);
+}
+
+/* Responsive Utilities */
+@media (max-width: 1024px) {
+  .cmc-sidebar-left,
+  .cmc-sidebar-right {
+    display: none;
+  }
+  
+  .cmc-container {
+    padding: 0 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .cmc-container {
+    padding: 0 12px;
+  }
+  
+  .cmc-text-4xl {
+    font-size: 28px;
+    line-height: 36px;
+  }
+  
+  .cmc-text-3xl {
+    font-size: 20px;
+    line-height: 28px;
+  }
+}
