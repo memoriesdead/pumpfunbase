@@ -13,6 +13,7 @@
     "@headlessui/react": "^2.2.6",
     "@hookform/resolvers": "^5.2.0",
     "@radix-ui/react-slot": "^1.2.3",
+    "@solana/spl-token": "^0.4.13",
     "@solana/web3.js": "^1.98.2",
     "@tanstack/react-query": "^5.83.0",
     "@tanstack/react-query-devtools": "^5.83.0",

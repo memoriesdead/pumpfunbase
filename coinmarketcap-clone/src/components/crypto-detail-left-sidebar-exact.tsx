@@ -106,8 +106,8 @@ export default function CryptoDetailLeftSidebarExact({ crypto }: CryptoDetailLef
                   name: crypto.name,
                   price: crypto.price,
                   logo: crypto.logo,
-                  chainId: crypto.chainId || 1,
-                  chainName: crypto.chainName || 'Ethereum'
+                  chainId: 1,
+                  chainName: 'Ethereum'
                 }} 
                 wallet={wallet}
               />

@@ -250,6 +250,30 @@ export interface TradeResult {
 }
 
 // ============================================================================
+// STORAGE LAYER  
+// ============================================================================
+
+class StorageLayer {
+  private cache: Map<string, any> = new Map()
+  
+  async store(key: string, data: any): Promise<void> {
+    this.cache.set(key, data)
+  }
+  
+  async retrieve(key: string): Promise<any> {
+    return this.cache.get(key)
+  }
+  
+  async clear(): Promise<void> {
+    this.cache.clear()
+  }
+  
+  async storePriceData(data: any): Promise<void> {
+    this.cache.set('priceData', data)
+  }
+}
+
+// ============================================================================
 // DATA PIPELINE ARCHITECTURE  
 // ============================================================================
 
@@ -266,21 +290,23 @@ export class DataPipeline {
   
   private initializeDataSources(): DataSource[] {
     return [
-      new CoinMarketCapSource(),
-      new ZeroxProtocolSource(), 
-      new ChainlinkOracleSource(),
-      new DefiPulseSource(),
-      new DexAggregatorSource()
+      // Mock data sources - implementations would go here
+      // new CoinMarketCapSource(),
+      // new ZeroxProtocolSource(), 
+      // new ChainlinkOracleSource(),
+      // new DefiPulseSource(),
+      // new DexAggregatorSource()
     ]
   }
   
   private initializeProcessors(): DataProcessor[] {
     return [
-      new PriceDataProcessor(),
-      new VolumeDataProcessor(),
-      new LiquidityDataProcessor(),
-      new MarketCapProcessor(),
-      new TradingSignalProcessor()
+      // Mock data processors - implementations would go here
+      // new PriceDataProcessor(),
+      // new VolumeDataProcessor(),
+      // new LiquidityDataProcessor(),
+      // new MarketCapProcessor(),
+      // new TradingSignalProcessor()
     ]
   }
   
@@ -351,6 +377,7 @@ export interface GlobalMarketData {
   activeExchanges: number
 }
 
+/*
 // ============================================================================
 // SCALABILITY & PERFORMANCE ARCHITECTURE
 // ============================================================================
@@ -412,6 +439,7 @@ export class LoadBalancer {
   }
 }
 
+/*
 export class CacheManager {
   private redis: any
   private strategies: CacheStrategy[]
@@ -613,3 +641,4 @@ export abstract class EncryptionService {
 export abstract class RateLimitService {
   abstract check(request: any): Promise<boolean>
 }
+*/

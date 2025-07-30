@@ -12,24 +12,19 @@ export default function Header() {
   const { isLoggedIn, logout } = useAuth()
 
   return (
-    <header className="bg-white border-b border-[#F0F0F0] sticky top-0 z-50">
+    <header className="bg-gradient-to-b from-[#0B0D11] via-[#0F1116] to-[#151821] border-b border-white/10 backdrop-blur-xl sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
         
         {/* Logo */}
         <div className="flex items-center space-x-8">
-          <Link href="/" className="text-2xl font-bold text-[#1652F0] hover:text-[#1652F0]/80 transition-colors cursor-pointer">
-            CoinMarketCap
+          <Link href="/" className="text-2xl font-bold bg-gradient-to-r from-[#00D4AA] via-[#7C3AED] to-[#FF6B6B] bg-clip-text text-transparent hover:opacity-80 transition-opacity cursor-pointer">
+            Pump.fun
           </Link>
           
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center space-x-8">
-            <a href="#" className="text-[#1E1E1E] hover:text-[#1652F0] font-medium">Cryptocurrencies</a>
-            <a href="#" className="text-[#1E1E1E] hover:text-[#1652F0] font-medium">Exchanges</a>
-            <a href="#" className="text-[#1E1E1E] hover:text-[#1652F0] font-medium">NFT</a>
-            <a href="#" className="text-[#1E1E1E] hover:text-[#1652F0] font-medium">DeFi</a>
-            <Link href="/buy" className="text-[#1E1E1E] hover:text-[#1652F0] font-medium">Buy Crypto</Link>
-            <Link href="/trading" className="text-[#1E1E1E] hover:text-[#1652F0] font-medium">Trading</Link>
-            <a href="#" className="text-[#1E1E1E] hover:text-[#1652F0] font-medium">Learn</a>
+            <Link href="/" className="text-white/80 hover:text-[#00D4AA] font-medium transition-colors">Home</Link>
+            <Link href="/discover" className="text-white/80 hover:text-[#00D4AA] font-medium transition-colors">Discover</Link>
           </nav>
         </div>
 
@@ -37,17 +32,17 @@ export default function Header() {
         <div className="flex items-center space-x-4">
           {/* Search Bar */}
           <div className="hidden md:flex items-center relative">
-            <Search className="absolute left-3 w-5 h-5 text-[#8C8C8C]" />
+            <Search className="absolute left-3 w-5 h-5 text-white/50" />
             <input
               type="text"
               placeholder="Search coins, exchanges, NFT..."
-              className="w-80 h-10 pl-10 pr-4 bg-[#F8F9FA] border border-[#F0F0F0] rounded-lg focus:outline-none focus:border-[#1652F0] focus:ring-2 focus:ring-[#1652F0]/20"
+              className="w-80 h-10 pl-10 pr-4 bg-white/8 backdrop-blur-2xl border border-white/10 rounded-lg text-white placeholder-white/50 focus:outline-none focus:border-[#00D4AA]/60 focus:ring-2 focus:ring-[#00D4AA]/20"
             />
           </div>
 
           {/* Mobile Search */}
           <button className="md:hidden p-2">
-            <Search className="w-6 h-6 text-[#8C8C8C]" />
+            <Search className="w-6 h-6 text-white/60" />
           </button>
 
           {/* Action Buttons */}
@@ -60,34 +55,29 @@ export default function Header() {
             className="lg:hidden p-2"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
-            <Menu className="w-6 h-6 text-[#8C8C8C]" />
+            <Menu className="w-6 h-6 text-white/60" />
           </button>
         </div>
       </div>
 
       {/* Mobile Navigation */}
       {isMenuOpen && (
-        <div className="lg:hidden bg-white border-t border-[#F0F0F0] px-6 py-4">
+        <div className="lg:hidden bg-[#151821]/95 backdrop-blur-xl border-t border-white/10 px-6 py-4">
           <nav className="flex flex-col space-y-4">
-            <a href="#" className="text-[#1E1E1E] hover:text-[#1652F0] font-medium">Cryptocurrencies</a>
-            <a href="#" className="text-[#1E1E1E] hover:text-[#1652F0] font-medium">Exchanges</a>
-            <a href="#" className="text-[#1E1E1E] hover:text-[#1652F0] font-medium">NFT</a>
-            <a href="#" className="text-[#1E1E1E] hover:text-[#1652F0] font-medium">DeFi</a>
-            <Link href="/buy" className="text-[#1E1E1E] hover:text-[#1652F0] font-medium">Buy Crypto</Link>
-            <Link href="/trading" className="text-[#1E1E1E] hover:text-[#1652F0] font-medium">Trading</Link>
-            <a href="#" className="text-[#1E1E1E] hover:text-[#1652F0] font-medium">Learn</a>
-            <div className="pt-4 border-t border-[#F0F0F0] space-y-2">
+            <Link href="/" className="text-white/80 hover:text-[#00D4AA] font-medium transition-colors">Home</Link>
+            <Link href="/discover" className="text-white/80 hover:text-[#00D4AA] font-medium transition-colors">Discover</Link>
+            <div className="pt-4 border-t border-white/10 space-y-2">
               {isLoggedIn ? (
                 <button
                   onClick={logout}
-                  className="block w-full text-left px-4 py-2 text-[#1E1E1E] hover:text-[#1652F0] font-medium"
+                  className="block w-full text-left px-4 py-2 text-white/80 hover:text-[#00D4AA] font-medium transition-colors"
                 >
                   Disconnect
                 </button>
               ) : (
                 <button
                   onClick={() => setIsLoginModalOpen(true)}
-                  className="block w-full text-left px-4 py-2 bg-[#1652F0] text-white rounded-lg hover:bg-[#1652F0]/90 font-medium"
+                  className="block w-full text-left px-4 py-2 bg-gradient-to-r from-[#00D4AA] to-[#7C3AED] text-white rounded-lg hover:opacity-90 font-medium transition-opacity"
                 >
                   Connect Wallet
                 </button>

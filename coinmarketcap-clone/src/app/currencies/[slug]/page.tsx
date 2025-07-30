@@ -1,7 +1,9 @@
 import CryptoDetailPageWrapper from '@/components/crypto-detail-page-wrapper'
+import MemeCoinDetailPage from '@/components/meme-coin-detail-page'
 
 interface Props {
   params: Promise<{ slug: string }>
+  searchParams?: Promise<{ [key: string]: string | string[] | undefined }>
 }
 
 // Top 50 cryptocurrency symbols for static generation
@@ -13,9 +15,45 @@ const TOP_50_CRYPTO_SYMBOLS = [
   'sushi', 'srm', 'knc', 'mngo', 'bnt', 'alpha', 'fida', 'samo', 'atlas', 'step'
 ]
 
-export default async function CryptocurrencyPage({ params }: Props) {
-  const { slug } = await params
+// Meme coin patterns that should use the enhanced detail page
+const MEME_COIN_PATTERNS = [
+  'pepecoin', 'dogeking', 'moonrocket', 'diamondhands', 'shibainu', 'catcoin',
+  'rocketfuel', 'gemhunter', 'bullrun', 'tothemoon', 'alphacoin', 'gigachad',
+  'degenape', 'lunarbeast', 'cosmicgem', 'turbomoon', 'hyperpepe', 'eliteshib',
+  'megapump', 'ultragains'
+]
+
+function isMemeToken(slug: string): boolean {
+  const lowerSlug = slug.toLowerCase();
   
+  // Check if it matches any meme coin patterns
+  if (MEME_COIN_PATTERNS.some(pattern => lowerSlug.includes(pattern))) {
+    return true;
+  }
+  
+  // Check if it has numbered variations (e.g., pepecoin-1, pepecoin-2)
+  if (MEME_COIN_PATTERNS.some(pattern => lowerSlug.includes(pattern) || lowerSlug.startsWith(pattern))) {
+    return true;
+  }
+  
+  // Check if it's not in the traditional crypto list
+  if (!TOP_50_CRYPTO_SYMBOLS.includes(lowerSlug)) {
+    return true;
+  }
+  
+  return false;
+}
+
+export default async function CryptocurrencyPage({ params, searchParams }: Props) {
+  const { slug } = await params
+  const search = searchParams ? await searchParams : {}
+  
+  // Use meme coin detail page for all meme tokens (including from discover page)
+  if (isMemeToken(slug)) {
+    return <MemeCoinDetailPage slug={slug} />
+  }
+  
+  // Use traditional crypto detail page for established cryptocurrencies only
   return <CryptoDetailPageWrapper slug={slug} />
 }
 

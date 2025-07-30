@@ -4,6 +4,14 @@ interface RouteParams {
   params: Promise<{ symbol: string }>
 }
 
+type DemoPost = {
+  text: string;
+  author: any;
+  metrics: any;
+  realUrl?: string;
+  postUrl?: string;
+};
+
 // Real Twitter/X API v2 integration for live crypto social media posts
 async function fetchCryptoSocialPosts(symbol: string, sentiment: string) {
   try {
@@ -185,7 +193,7 @@ async function fetchCryptoSocialPosts(symbol: string, sentiment: string) {
           author: {
             name: user?.name || 'Unknown User',
             username: user?.username || 'unknown',
-            profileImage: user?.profile_image_url?.replace('_normal', '_400x400') || 'https://cryptologos.cc/logos/solana-sol-logo.png',
+            profileImage: user?.profile_image_url?.replace('_normal', '_400x400') || 'https://abs.twimg.com/sticky/default_profile_images/default_profile_400x400.png',
             verified: isVerified,
             verifiedType: user?.verified_type,
             followers: user?.public_metrics?.followers_count || 0
@@ -284,7 +292,7 @@ function generateDemoPosts(symbol: string, sentiment: string) {
   const currentTime = new Date()
   
   // Token-specific information and realistic posts
-  const tokenData: Record<string, { name: string, posts: Array<{ text: string, author: any, metrics: any }> }> = {
+  const tokenData: Record<string, { name: string, posts: DemoPost[] }> = {
     'SOL': {
       name: 'Solana',
       posts: [
@@ -340,7 +348,7 @@ function generateDemoPosts(symbol: string, sentiment: string) {
           author: {
             name: 'Circle',
             username: 'circle',
-            profileImage: 'https://cryptologos.cc/logos/usd-coin-usdc-logo.png',
+            profileImage: 'https://assets.coingecko.com/coins/images/6319/large/USD_Coin_icon.png',
             verified: true,
             verifiedType: 'business',
             followers: 180000
@@ -354,7 +362,7 @@ function generateDemoPosts(symbol: string, sentiment: string) {
           author: {
             name: 'Centre Consortium',
             username: 'centre_io',
-            profileImage: 'https://cryptologos.cc/logos/usd-coin-usdc-logo.png',
+            profileImage: 'https://assets.coingecko.com/coins/images/6319/large/USD_Coin_icon.png',
             verified: true,
             verifiedType: 'business',
             followers: 95000

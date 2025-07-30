@@ -217,7 +217,7 @@ async function fetchZeroxTokenMarkets(symbol: string) {
 
 export async function GET(
   request: Request,
-  { params }: { params: { symbol: string } },
+  { params }: any
 ) {
   try {
     const { symbol } = params

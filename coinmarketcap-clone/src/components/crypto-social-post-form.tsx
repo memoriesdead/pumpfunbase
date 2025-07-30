@@ -60,7 +60,7 @@ export default function CryptoSocialPostForm({ crypto }: CryptoSocialPostFormPro
   const remainingChars = maxCharacters - postText.length
 
   const generateSuggestedPost = () => {
-    const priceChange = crypto.priceChange24h || 0
+    const priceChange = crypto.priceChange1h || 0
     const isPositive = priceChange >= 0
     const emoji = isPositive ? '🚀' : '📉'
     const direction = isPositive ? 'up' : 'down'
@@ -94,7 +94,7 @@ export default function CryptoSocialPostForm({ crypto }: CryptoSocialPostFormPro
     { text: `$${crypto.symbol}`, icon: DollarSign, label: 'Ticker' },
     { text: crypto.name, icon: Target, label: 'Name' },
     { text: `$${crypto.price.toLocaleString()}`, icon: BarChart3, label: 'Price' },
-    { text: `${crypto.priceChange24h?.toFixed(2)}%`, icon: crypto.priceChange24h && crypto.priceChange24h >= 0 ? TrendingUp : TrendingDown, label: '24h Change' }
+    { text: `${crypto.priceChange1h?.toFixed(2)}%`, icon: crypto.priceChange1h && crypto.priceChange1h >= 0 ? TrendingUp : TrendingDown, label: '24h Change' }
   ]
 
   return (
@@ -295,9 +295,9 @@ export default function CryptoSocialPostForm({ crypto }: CryptoSocialPostFormPro
           <div className="flex justify-between">
             <span className="text-sm text-[#616E85]">24h Change</span>
             <span className={`text-sm font-medium ${
-              (crypto.priceChange24h || 0) >= 0 ? 'text-green-600' : 'text-red-600'
+              (crypto.priceChange1h || 0) >= 0 ? 'text-green-600' : 'text-red-600'
             }`}>
-              {(crypto.priceChange24h || 0) >= 0 ? '+' : ''}{crypto.priceChange24h?.toFixed(2)}%
+              {(crypto.priceChange1h || 0) >= 0 ? '+' : ''}{crypto.priceChange1h?.toFixed(2)}%
             </span>
           </div>
           <div className="flex justify-between">

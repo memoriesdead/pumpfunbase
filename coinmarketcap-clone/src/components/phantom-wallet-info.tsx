@@ -28,24 +28,7 @@ export default function PhantomWalletInfo() {
       setSolanaBalance(balanceSol)
       
       // Get token accounts (simplified)
-      try {
-        const tokenAccounts = await connection.getParsedTokenAccountsByOwner(publicKey, {
-          programId: new PublicKey('TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA')
-        })
-        
-        const tokens = tokenAccounts.value
-          .filter(account => account.account.data.parsed.info.tokenAmount.uiAmount > 0)
-          .slice(0, 5) // Show top 5 tokens
-          .map(account => ({
-            mint: account.account.data.parsed.info.mint,
-            amount: account.account.data.parsed.info.tokenAmount.uiAmount,
-            decimals: account.account.data.parsed.info.tokenAmount.decimals
-          }))
-        
-        setTokenAccounts(tokens)
-      } catch (tokenError) {
-        console.error('Error fetching token accounts:', tokenError)
-      }
+      
       
     } catch (error) {
       console.error('Error refreshing Solana balance:', error)

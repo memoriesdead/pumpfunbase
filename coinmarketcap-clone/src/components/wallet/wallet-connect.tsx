@@ -1,6 +1,7 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
+import { createPortal } from 'react-dom'
 import { Wallet, ChevronDown, ExternalLink, Copy, CheckCircle } from 'lucide-react'
 
 // Our platform fee wallet address
@@ -61,11 +62,43 @@ export default function WalletConnect() {
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [isConnecting, setIsConnecting] = useState(false)
   const [copied, setCopied] = useState(false)
+  const dropdownRef = useRef<HTMLDivElement>(null)
 
   // Check for existing wallet connection on load
   useEffect(() => {
     checkWalletConnection()
   }, [])
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsModalOpen(false)
+      }
+    }
+
+    if (isModalOpen) {
+      document.addEventListener('mousedown', handleClickOutside)
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [isModalOpen])
+
+  // Prevent body scroll when modal is open
+  useEffect(() => {
+    if (isModalOpen) {
+      console.log('Wallet modal is now open') // Debug log
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = 'unset'
+    }
+
+    return () => {
+      document.body.style.overflow = 'unset'
+    }
+  }, [isModalOpen])
 
   const checkWalletConnection = async () => {
     if (typeof window === 'undefined') return
@@ -212,21 +245,42 @@ export default function WalletConnect() {
       <>
         <button
           onClick={() => setIsModalOpen(true)}
-          className="flex items-center space-x-2 px-6 py-3 bg-gradient-to-r from-[#1652F0] to-[#3861FB] text-white rounded-lg hover:from-[#1652F0]/90 hover:to-[#3861FB]/90 transition-all duration-200 font-semibold shadow-lg"
+          className="flex items-center space-x-2 px-6 py-3 bg-gradient-to-r from-[#00D4AA] via-[#7C3AED] to-[#FF6B6B] text-white rounded-xl hover:shadow-2xl hover:shadow-[#00D4AA]/30 transition-all duration-300 hover:scale-105 transform font-bold shadow-xl"
         >
           <Wallet className="w-5 h-5" />
           <span>Connect Wallet</span>
         </button>
 
         {/* Wallet Selection Modal */}
-        {isModalOpen && (
-          <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-            <div className="bg-white rounded-xl max-w-md w-full p-6">
+        {isModalOpen && typeof window !== 'undefined' && createPortal(
+          <div 
+            className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 animate-in fade-in duration-200"
+            style={{ 
+              position: 'fixed', 
+              zIndex: 99999,
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              width: '100vw',
+              height: '100vh'
+            }}
+            onClick={() => setIsModalOpen(false)}
+          >
+            <div 
+              className="bg-gradient-to-br from-[#0B0D11] via-[#0F1116] to-[#151821] border border-white/20 rounded-2xl max-w-md w-full mx-4 p-6 shadow-2xl animate-in zoom-in-95 duration-200"
+              style={{ 
+                maxHeight: 'calc(100vh - 2rem)',
+                overflowY: 'auto',
+                position: 'relative'
+              }}
+              onClick={(e) => e.stopPropagation()}
+            >
               <div className="flex justify-between items-center mb-6">
-                <h3 className="text-xl font-bold text-[#1E1932]">Connect Wallet</h3>
+                <h3 className="text-2xl font-black bg-gradient-to-r from-[#00D4AA] via-[#7C3AED] to-[#FF6B6B] bg-clip-text text-transparent">Connect Wallet</h3>
                 <button
                   onClick={() => setIsModalOpen(false)}
-                  className="text-[#8C8C8C] hover:text-[#1E1932] text-2xl"
+                  className="text-white/60 hover:text-white text-2xl p-2 hover:bg-white/10 rounded-xl transition-all"
                 >
                   ×
                 </button>
@@ -238,102 +292,117 @@ export default function WalletConnect() {
                     key={walletOption.connector}
                     onClick={() => connectWallet(walletOption.connector)}
                     disabled={!walletOption.available || isConnecting}
-                    className={`w-full flex items-center justify-between p-4 rounded-lg border transition-all ${
+                    className={`w-full flex items-center justify-between p-4 rounded-xl border transition-all duration-200 ${
                       walletOption.available
-                        ? 'border-[#F0F0F0] hover:border-[#1652F0] hover:bg-[#F8F9FF]'
-                        : 'border-[#F0F0F0] opacity-50 cursor-not-allowed'
+                        ? 'border-white/20 hover:border-[#00D4AA]/50 hover:bg-gradient-to-r hover:from-[#00D4AA]/10 hover:to-[#7C3AED]/10 backdrop-blur-xl'
+                        : 'border-white/10 opacity-50 cursor-not-allowed'
                     }`}
                   >
                     <div className="flex items-center space-x-3">
                       <span className="text-2xl">{walletOption.icon}</span>
-                      <span className="font-semibold text-[#1E1932]">{walletOption.name}</span>
+                      <div className="text-left">
+                        <span className="font-bold text-white text-base">{walletOption.name}</span>
+                        {!walletOption.available && (
+                          <div className="text-xs text-white/50">Click to install</div>
+                        )}
+                      </div>
                     </div>
                     {!walletOption.available && (
-                      <ExternalLink className="w-4 h-4 text-[#8C8C8C]" />
+                      <ExternalLink className="w-4 h-4 text-white/40" />
                     )}
                   </button>
                 ))}
               </div>
 
-              <div className="mt-6 p-4 bg-[#F8F9FF] rounded-lg">
-                <p className="text-sm text-[#8C8C8C]">
-                  By connecting a wallet, you agree to our Terms of Service and Privacy Policy.
+              <div className="mt-6 p-4 bg-gradient-to-r from-[#00D4AA]/10 via-[#7C3AED]/5 to-[#FF6B6B]/10 rounded-xl border border-white/10 backdrop-blur-xl">
+                <div className="flex items-center space-x-2 mb-2">
+                  <span className="text-lg">🛡️</span>
+                  <span className="text-sm font-bold text-white">Secure & Private</span>
+                </div>
+                <p className="text-xs text-white/70">
+                  By connecting a wallet, you agree to our Terms of Service and Privacy Policy. We never store your private keys.
                 </p>
               </div>
             </div>
-          </div>
+          </div>,
+          document.body
         )}
       </>
     )
   }
 
   return (
-    <div className="relative">
+    <div className="relative" ref={dropdownRef}>
       <button
         onClick={() => setIsModalOpen(!isModalOpen)}
-        className="flex items-center space-x-3 px-4 py-2 bg-white border border-[#F0F0F0] rounded-lg hover:border-[#1652F0] transition-colors"
+        className="flex items-center space-x-3 px-4 py-2 bg-white/10 backdrop-blur-xl border border-white/20 rounded-xl hover:border-[#00D4AA]/50 hover:bg-white/15 transition-all duration-200 group"
       >
         <div className="flex items-center space-x-2">
-          <div className="w-8 h-8 bg-gradient-to-br from-[#1652F0] to-[#3861FB] rounded-full flex items-center justify-center">
+          <div className="w-8 h-8 bg-gradient-to-br from-[#00D4AA] to-[#7C3AED] rounded-full flex items-center justify-center shadow-lg">
             <Wallet className="w-4 h-4 text-white" />
           </div>
           <div className="text-left">
-            <div className="text-sm font-semibold text-[#1E1932]">
+            <div className="text-sm font-bold text-white group-hover:text-[#00D4AA] transition-colors">
               {formatAddress(wallet.address!)}
             </div>
-            <div className="text-xs text-[#8C8C8C]">
+            <div className="text-xs text-white/70">
               {getChainName(wallet.chainId!)}
             </div>
           </div>
         </div>
-        <ChevronDown className="w-4 h-4 text-[#8C8C8C]" />
+        <ChevronDown className="w-4 h-4 text-white/60 group-hover:text-white transition-colors" />
       </button>
 
       {/* Wallet Info Dropdown */}
       {isModalOpen && (
-        <div className="absolute top-full mt-2 right-0 bg-white border border-[#F0F0F0] rounded-lg shadow-lg p-4 min-w-[280px] z-50">
+        <div className="absolute top-full mt-2 right-0 bg-gradient-to-br from-[#0B0D11] via-[#0F1116] to-[#151821] border border-white/20 rounded-xl shadow-2xl p-4 min-w-[280px] z-[9999] backdrop-blur-2xl">
           <div className="space-y-4">
             <div>
-              <div className="text-sm text-[#8C8C8C] mb-1">Wallet Address</div>
+              <div className="text-sm text-white/60 mb-1 font-medium">Wallet Address</div>
               <div className="flex items-center space-x-2">
-                <span className="text-sm font-mono text-[#1E1932]">
+                <span className="text-sm font-mono text-white font-bold">
                   {formatAddress(wallet.address!)}
                 </span>
                 <button
                   onClick={copyAddress}
-                  className="p-1 hover:bg-[#F8F9FF] rounded"
+                  className="p-1 hover:bg-white/10 rounded-lg transition-colors"
                 >
                   {copied ? (
-                    <CheckCircle className="w-4 h-4 text-[#16C784]" />
+                    <CheckCircle className="w-4 h-4 text-[#00D4AA]" />
                   ) : (
-                    <Copy className="w-4 h-4 text-[#8C8C8C]" />
+                    <Copy className="w-4 h-4 text-white/60 hover:text-white" />
                   )}
                 </button>
               </div>
             </div>
 
             <div>
-              <div className="text-sm text-[#8C8C8C] mb-1">Network</div>
-              <div className="text-sm font-semibold text-[#1E1932]">
-                {getChainName(wallet.chainId!)}
+              <div className="text-sm text-white/60 mb-1 font-medium">Network</div>
+              <div className="flex items-center space-x-2">
+                <div className="w-3 h-3 bg-[#00D4AA] rounded-full animate-pulse"></div>
+                <div className="text-sm font-bold text-white">
+                  {getChainName(wallet.chainId!)}
+                </div>
               </div>
             </div>
 
             {wallet.balance && (
               <div>
-                <div className="text-sm text-[#8C8C8C] mb-1">Balance</div>
-                <div className="text-sm font-semibold text-[#1E1932]">
-                  {wallet.balance} ETH
+                <div className="text-sm text-white/60 mb-1 font-medium">Balance</div>
+                <div className="text-sm font-bold text-[#00D4AA]">
+                  {wallet.balance} {wallet.chainId === 101 ? 'SOL' : 'ETH'}
                 </div>
               </div>
             )}
 
-            <button
-              onClick={disconnectWallet}
-              className="w-full px-4 py-2 bg-[#EA3943] text-white rounded-lg hover:bg-[#EA3943]/90 transition-colors font-semibold"
-            >
-              Disconnect
-            </button>
+            <div className="pt-2 border-t border-white/10">
+              <button
+                onClick={disconnectWallet}
+                className="w-full px-4 py-2 bg-gradient-to-r from-[#FF6B6B] to-[#DC2626] text-white rounded-lg hover:shadow-lg hover:shadow-[#FF6B6B]/30 transition-all duration-200 font-bold"
+              >
+                Disconnect Wallet
+              </button>
+            </div>
           </div>
         </div>
       )}

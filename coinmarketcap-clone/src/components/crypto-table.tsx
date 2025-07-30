@@ -10,7 +10,7 @@ import { getPopularTokens } from '@/lib/zerox-config'
 
 // Fallback icon component for broken images
 const FallbackIcon = ({ symbol, className }: { symbol: string, className: string }) => (
-  <div className={`${className} bg-gradient-to-br from-[#3861FB] to-[#1652F0] flex items-center justify-center text-white font-bold text-xs`}>
+  <div className={`${className} bg-gradient-to-br from-[#00D4AA] to-[#7C3AED] flex items-center justify-center text-white font-bold text-xs`}>
     {symbol.substring(0, 2).toUpperCase()}
   </div>
 )
@@ -158,32 +158,32 @@ export default function CryptoTable() {
 
   if (loading) {
     return (
-      <div className="bg-white rounded-xl shadow-sm overflow-hidden">
-        <div className="bg-[#F7F9FC] border-b border-[#EFF2F5] px-6 py-4">
-          <h2 className="text-2xl font-bold text-[#1E1932]">
+      <div className="bg-gradient-to-br from-white/8 via-white/6 to-white/4 backdrop-blur-2xl border border-white/10 rounded-xl shadow-xl overflow-hidden">
+        <div className="bg-gradient-to-r from-black/30 via-transparent to-black/20 border-b border-white/10 px-6 py-4">
+          <h2 className="text-2xl font-bold text-white">
             Today&apos;s Cryptocurrency Prices by Market Cap
           </h2>
-          <p className="text-[#58667E] mt-1">
-            Loading live data from 0x.org integration...
+          <p className="text-white/70 mt-1">
+            Loading live data...
           </p>
         </div>
         <div className="p-8 text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#3861FB] mx-auto"></div>
-          <p className="mt-4 text-[#58667E]">Loading tokens...</p>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#00D4AA] mx-auto"></div>
+          <p className="mt-4 text-white/70">Loading tokens...</p>
         </div>
       </div>
     )
   }
 
   return (
-    <div className="bg-white rounded-xl shadow-sm overflow-hidden">
+    <div className="bg-gradient-to-br from-white/8 via-white/6 to-white/4 backdrop-blur-2xl border border-white/10 rounded-xl shadow-xl overflow-hidden">
       {/* Table Header */}
-      <div className="bg-[#F7F9FC] border-b border-[#EFF2F5] px-6 py-4">
-        <h2 className="text-2xl font-bold text-[#1E1932]">
+      <div className="bg-gradient-to-r from-black/30 via-transparent to-black/20 border-b border-white/10 px-6 py-4">
+        <h2 className="text-2xl font-bold text-white">
           Today&apos;s Cryptocurrency Prices by Market Cap
         </h2>
-        <p className="text-[#58667E] mt-1">
-          Live data from 0x.org integration with real-time price feeds
+        <p className="text-white/70 mt-1">
+          Live data with real-time price feeds
         </p>
       </div>
 
@@ -191,7 +191,7 @@ export default function CryptoTable() {
       <div className="hidden md:block overflow-x-auto">
         <table className="w-full">
           <thead>
-            <tr className="bg-[#F7F9FC] text-[#58667E] text-sm">
+            <tr className="bg-white/5 text-white/70 text-sm">
               <th className="text-left p-4 font-semibold cursor-pointer" onClick={() => handleSort('rank')}>
                 <div className="flex items-center space-x-1">
                   <span>#</span>
@@ -243,13 +243,13 @@ export default function CryptoTable() {
             {cryptos.map((crypto) => (
               <tr
                 key={crypto.id}
-                className="border-b border-[#F7F9FC] hover:bg-[#F7F9FC] transition-colors cursor-pointer"
+                className="border-b border-white/10 hover:bg-white/5 transition-colors cursor-pointer"
                 onClick={() => router.push(`/currencies/${crypto.symbol.toLowerCase()}`)}
               >
                 <td className="p-4">
                   <div className="flex items-center space-x-2">
-                    <Star className="w-4 h-4 text-[#58667E] hover:text-yellow-400" />
-                    <span className="font-medium text-[#58667E]">
+                    <Star className="w-4 h-4 text-white/60 hover:text-yellow-400" />
+                    <span className="font-medium text-white/70">
                       {crypto.rank}
                     </span>
                   </div>
@@ -263,16 +263,16 @@ export default function CryptoTable() {
                       className="w-8 h-8 rounded-full"
                     />
                     <div>
-                      <div className="font-semibold text-[#1E1932] hover:text-[#3861FB]">
+                      <div className="font-semibold text-white hover:text-[#00D4AA]">
                         {crypto.name}
                       </div>
-                      <div className="text-sm text-[#58667E]">
+                      <div className="text-sm text-white/60">
                         {crypto.symbol}
                       </div>
                     </div>
                   </div>
                 </td>
-                <td className="p-4 text-right font-semibold text-[#1E1932]">
+                <td className="p-4 text-right font-semibold text-white">
                   {formatPrice(crypto.price)}
                 </td>
                 <td className="p-4 text-right">
@@ -299,10 +299,10 @@ export default function CryptoTable() {
                     {crypto.change7d.toFixed(2)}%
                   </span>
                 </td>
-                <td className="p-4 text-right font-semibold text-[#1E1932]">
+                <td className="p-4 text-right font-semibold text-white">
                   ${formatNumber(crypto.marketCap)}
                 </td>
-                <td className="p-4 text-right font-semibold text-[#1E1932]">
+                <td className="p-4 text-right font-semibold text-white">
                   ${formatNumber(crypto.volume24h)}
                 </td>
                 <td className="p-4 text-right">
@@ -321,11 +321,11 @@ export default function CryptoTable() {
       <div className="md:hidden">
         {cryptos.map((crypto) => (
           <Link key={crypto.id} href={`/currencies/${crypto.symbol.toLowerCase()}`}>
-            <div className="border-b border-[#F7F9FC] p-4 hover:bg-[#F7F9FC] transition-colors cursor-pointer">
+            <div className="border-b border-white/10 p-4 hover:bg-white/5 transition-colors cursor-pointer">
               <div className="flex items-center justify-between mb-3">
                 <div className="flex items-center space-x-3">
-                  <Star className="w-4 h-4 text-[#58667E]" />
-                  <span className="text-sm text-[#58667E]">#{crypto.rank}</span>
+                  <Star className="w-4 h-4 text-white/60" />
+                  <span className="text-sm text-white/60">#{crypto.rank}</span>
                   <CryptoIcon
                     src={crypto.logo}
                     alt={crypto.name}
@@ -333,12 +333,12 @@ export default function CryptoTable() {
                     className="w-8 h-8 rounded-full"
                   />
                   <div>
-                    <div className="font-semibold text-[#1E1932]">{crypto.name}</div>
-                    <div className="text-sm text-[#58667E]">{crypto.symbol}</div>
+                    <div className="font-semibold text-white">{crypto.name}</div>
+                    <div className="text-sm text-white/60">{crypto.symbol}</div>
                   </div>
                 </div>
               <div className="text-right">
-                <div className="font-bold text-lg text-[#1E1932]">{formatPrice(crypto.price)}</div>
+                <div className="font-bold text-lg text-white">{formatPrice(crypto.price)}</div>
                 <div className={`text-sm font-semibold ${crypto.change24h >= 0 ? 'text-[#16C784]' : 'text-[#EA3943]'}`}>
                   {crypto.change24h >= 0 ? '+' : ''}{crypto.change24h.toFixed(2)}%
                 </div>
@@ -346,12 +346,12 @@ export default function CryptoTable() {
             </div>
             <div className="grid grid-cols-2 gap-4 text-sm">
               <div className="flex justify-between">
-                <span className="text-[#58667E]">Market Cap</span>
-                <span className="font-semibold">${formatNumber(crypto.marketCap)}</span>
+                <span className="text-white/60">Market Cap</span>
+                <span className="font-semibold text-white">${formatNumber(crypto.marketCap)}</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-[#58667E]">Volume</span>
-                <span className="font-semibold">${formatNumber(crypto.volume24h)}</span>
+                <span className="text-white/60">Volume</span>
+                <span className="font-semibold text-white">${formatNumber(crypto.volume24h)}</span>
               </div>
             </div>
               <div className="mt-3 flex justify-center">

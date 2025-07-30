@@ -30,12 +30,12 @@ export default function CryptoChartSection({ crypto }: CryptoChartSectionProps) 
               ${crypto.price.toLocaleString()}
             </div>
             <div className={`flex items-center space-x-1 px-3 py-1 rounded-full text-sm font-medium ${
-              crypto.priceChange24h >= 0 
+              crypto.priceChange1h >= 0 
                 ? 'bg-[#E8F5E8] text-[#00D4AA]' 
                 : 'bg-[#FFF0F0] text-[#FF5722]'
             }`}>
-              <span>{crypto.priceChange24h >= 0 ? '↗' : '↘'}</span>
-              <span>{Math.abs(crypto.priceChange24h).toFixed(2)}%</span>
+              <span>{crypto.priceChange1h >= 0 ? '↗' : '↘'}</span>
+              <span>{Math.abs(crypto.priceChange1h).toFixed(2)}%</span>
             </div>
           </div>
         </div>

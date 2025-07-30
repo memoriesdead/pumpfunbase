@@ -2,6 +2,12 @@
 
 import { useState, useEffect, createContext, useContext, ReactNode } from 'react'
 import { ethers } from 'ethers'
+
+declare global {
+  interface Window {
+    ethereum?: any
+  }
+}
 import { Wallet, Copy, ExternalLink, ChevronDown, Shield, Zap, Activity } from 'lucide-react'
 
 interface WalletContextType {

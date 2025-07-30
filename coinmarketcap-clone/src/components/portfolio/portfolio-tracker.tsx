@@ -110,7 +110,7 @@ export default function PortfolioTracker({ wallet }: { wallet?: any }) {
       {
         symbol: 'BTC',
         name: 'Bitcoin',
-        logo: 'https://cryptologos.cc/logos/bitcoin-btc-logo.png',
+        logo: 'https://assets.coingecko.com/coins/images/1/large/bitcoin.png',
         amount: 0.1,
         avgBuyPrice: 95000,
         currentPrice: 98500,
@@ -132,7 +132,7 @@ export default function PortfolioTracker({ wallet }: { wallet?: any }) {
       {
         symbol: 'LINK',
         name: 'Chainlink',
-        logo: 'https://cryptologos.cc/logos/chainlink-link-logo.png',
+        logo: 'https://assets.coingecko.com/coins/images/877/large/chainlink-new-logo.png',
         amount: 100,
         avgBuyPrice: 28,
         currentPrice: 29.5,
@@ -151,9 +151,9 @@ export default function PortfolioTracker({ wallet }: { wallet?: any }) {
     const totalPnL = mockHoldings.reduce((sum, holding) => sum + holding.pnl, 0)
     const totalFeesPaid = mockTransactions.reduce((sum, tx) => sum + tx.fee, 0)
     const bestPerformer = mockHoldings.reduce((best, current) => 
-      current.pnlPercentage > (best?.pnlPercentage || -Infinity) ? current : best, null)
+      current.pnlPercentage > best.pnlPercentage ? current : best, mockHoldings[0])
     const worstPerformer = mockHoldings.reduce((worst, current) => 
-      current.pnlPercentage < (worst?.pnlPercentage || Infinity) ? current : worst, null)
+      current.pnlPercentage < worst.pnlPercentage ? current : worst, mockHoldings[0])
 
     setStats({
       totalValue,

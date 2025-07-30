@@ -93,7 +93,7 @@ const SocialPostCard = ({ post }: { post: SocialPost }) => {
               const target = e.target as HTMLImageElement
               // First try a direct profile image from cryptologos.cc for known tokens
               if (post.author.username === 'solana' || post.author.username === 'solanafndn' || post.author.username === 'solanalabs') {
-                target.src = 'https://cryptologos.cc/logos/solana-sol-logo.png'
+                target.src = 'https://pbs.twimg.com/profile_images/1616932042473967618/jUwwNhfF_400x400.jpg'
               } else {
                 // Fallback to placeholder with first letter
                 target.src = `https://via.placeholder.com/40x40/6366F1/ffffff?text=${post.author.name.charAt(0)}`

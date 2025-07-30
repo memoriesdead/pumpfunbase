@@ -28,7 +28,7 @@ const TOP_50_POPULAR_CRYPTO_DATA = [
     id: 3, rank: 3, name: 'XRP', symbol: 'XRP',
     basePrice: 2.45, marketCap: 140000000000,
     chainId: 1, chainName: 'Ethereum', chainSymbol: 'ETH',
-    logo: 'https://cryptologos.cc/logos/xrp-xrp-logo.png',
+    logo: 'https://assets.coingecko.com/coins/images/44/large/xrp-symbol-white-128.png',
     description: 'XRP is a digital currency built for payments, with fast and low-cost transactions.',
     website: 'https://xrpl.org',
     whitepaper: 'https://xrpl.org/docs.html'
@@ -73,7 +73,7 @@ const TOP_50_POPULAR_CRYPTO_DATA = [
     id: 8, rank: 8, name: 'Dogecoin', symbol: 'DOGE',
     basePrice: 0.385, marketCap: 56000000000,
     chainId: 1, chainName: 'Ethereum', chainSymbol: 'ETH',
-    logo: 'https://cryptologos.cc/logos/dogecoin-doge-logo.png',
+    logo: 'https://assets.coingecko.com/coins/images/5/large/dogecoin.png',
     description: 'Dogecoin is a cryptocurrency based on the popular "Doge" Internet meme.',
     website: 'https://dogecoin.com',
     whitepaper: 'https://github.com/dogecoin/dogecoin'
@@ -82,7 +82,7 @@ const TOP_50_POPULAR_CRYPTO_DATA = [
     id: 9, rank: 9, name: 'Cardano', symbol: 'ADA',
     basePrice: 1.14, marketCap: 39000000000,
     chainId: 1, chainName: 'Ethereum', chainSymbol: 'ETH',
-    logo: 'https://cryptologos.cc/logos/cardano-ada-logo.png',
+    logo: 'https://assets.coingecko.com/coins/images/975/large/cardano.png',
     description: 'Cardano is a blockchain platform for changemakers, innovators, and visionaries.',
     website: 'https://cardano.org',
     whitepaper: 'https://docs.cardano.org/learn/cardano-whitepaper'
@@ -91,7 +91,7 @@ const TOP_50_POPULAR_CRYPTO_DATA = [
     id: 10, rank: 10, name: 'Avalanche', symbol: 'AVAX',
     basePrice: 44.94, marketCap: 17000000000,
     chainId: 43114, chainName: 'Avalanche', chainSymbol: 'AVAX',
-    logo: 'https://cryptologos.cc/logos/avalanche-avax-logo.png',
+    logo: 'https://assets.coingecko.com/coins/images/12559/large/avalanche-avax-logo.png',
     description: 'Avalanche is a high-throughput smart contract platform.',
     website: 'https://www.avax.network',
     whitepaper: 'https://assets.website-files.com/5d80307810123f5ffbb34d6e/6008d7bbf8b10d1eb01e7e16_Avalanche%20Platform%20Whitepaper.pdf'
@@ -100,7 +100,7 @@ const TOP_50_POPULAR_CRYPTO_DATA = [
     id: 11, rank: 11, name: 'Chainlink', symbol: 'LINK',
     basePrice: 28.75, marketCap: 17000000000,
     chainId: 1, chainName: 'Ethereum', chainSymbol: 'ETH',
-    logo: 'https://cryptologos.cc/logos/chainlink-link-logo.png',
+    logo: 'https://assets.coingecko.com/coins/images/877/large/chainlink-new-logo.png',
     description: 'Chainlink is a decentralized oracle network that connects smart contracts with real-world data.',
     website: 'https://chain.link',
     whitepaper: 'https://link.smartcontract.com/whitepaper'
@@ -109,7 +109,7 @@ const TOP_50_POPULAR_CRYPTO_DATA = [
     id: 12, rank: 12, name: 'Stellar', symbol: 'XLM',
     basePrice: 0.44, marketCap: 13000000000,
     chainId: 1, chainName: 'Ethereum', chainSymbol: 'ETH',
-    logo: 'https://cryptologos.cc/logos/stellar-xlm-logo.png',
+    logo: 'https://assets.coingecko.com/coins/images/100/large/stellar_lumens.png',
     description: 'Stellar is an open network for storing and moving money.',
     website: 'https://www.stellar.org',
     whitepaper: 'https://www.stellar.org/papers/stellar-consensus-protocol'
@@ -118,7 +118,7 @@ const TOP_50_POPULAR_CRYPTO_DATA = [
     id: 13, rank: 13, name: 'Polkadot', symbol: 'DOT',
     basePrice: 8.51, marketCap: 12000000000,
     chainId: 1, chainName: 'Ethereum', chainSymbol: 'ETH',
-    logo: 'https://cryptologos.cc/logos/polkadot-new-dot-logo.png',
+    logo: 'https://assets.coingecko.com/coins/images/12171/large/polkadot.png',
     description: 'Polkadot enables cross-blockchain transfers of any type of data or asset.',
     website: 'https://polkadot.network',
     whitepaper: 'https://polkadot.network/PolkaDotPaper.pdf'
@@ -136,7 +136,7 @@ const TOP_50_POPULAR_CRYPTO_DATA = [
     id: 15, rank: 15, name: 'Litecoin', symbol: 'LTC',
     basePrice: 108.92, marketCap: 8100000000,
     chainId: 1, chainName: 'Ethereum', chainSymbol: 'ETH',
-    logo: 'https://cryptologos.cc/logos/litecoin-ltc-logo.png',
+    logo: 'https://assets.coingecko.com/coins/images/2/large/litecoin.png',
     description: 'Litecoin is a peer-to-peer Internet currency that enables instant payments.',
     website: 'https://litecoin.org',
     whitepaper: 'https://litecoin.org'
@@ -154,7 +154,7 @@ const TOP_50_POPULAR_CRYPTO_DATA = [
     id: 17, rank: 17, name: 'Internet Computer', symbol: 'ICP',
     basePrice: 11.05, marketCap: 5100000000,
     chainId: 1, chainName: 'Ethereum', chainSymbol: 'ETH',
-    logo: 'https://cryptologos.cc/logos/internet-computer-icp-logo.png',
+    logo: 'https://assets.coingecko.com/coins/images/14495/large/internet-computer-icp-logo.png',
     description: 'Internet Computer is a blockchain that runs at web speed with unbounded capacity.',
     website: 'https://dfinity.org',
     whitepaper: 'https://dfinity.org/whitepaper.pdf'
@@ -172,7 +172,7 @@ const TOP_50_POPULAR_CRYPTO_DATA = [
     id: 19, rank: 19, name: 'Ethereum Classic', symbol: 'ETC',
     basePrice: 32.14, marketCap: 4750000000,
     chainId: 1, chainName: 'Ethereum', chainSymbol: 'ETH',
-    logo: 'https://cryptologos.cc/logos/ethereum-classic-etc-logo.png',
+    logo: 'https://assets.coingecko.com/coins/images/453/large/ethereum-classic-logo.png',
     description: 'Ethereum Classic is the original Ethereum blockchain.',
     website: 'https://ethereumclassic.org',
     whitepaper: 'https://ethereumclassic.org/blog/2016-12-06-classic/'
@@ -181,7 +181,7 @@ const TOP_50_POPULAR_CRYPTO_DATA = [
     id: 20, rank: 20, name: 'Filecoin', symbol: 'FIL',
     basePrice: 6.7, marketCap: 4150000000,
     chainId: 1, chainName: 'Ethereum', chainSymbol: 'ETH',
-    logo: 'https://cryptologos.cc/logos/filecoin-fil-logo.png',
+    logo: 'https://assets.coingecko.com/coins/images/12817/large/filecoin.png',
     description: 'Filecoin is a decentralized storage network designed to store important information.',
     website: 'https://filecoin.io',
     whitepaper: 'https://filecoin.io/filecoin.pdf'
@@ -190,7 +190,7 @@ const TOP_50_POPULAR_CRYPTO_DATA = [
     id: 21, rank: 21, name: 'VeChain', symbol: 'VET',
     basePrice: 0.051, marketCap: 3700000000,
     chainId: 1, chainName: 'Ethereum', chainSymbol: 'ETH',
-    logo: 'https://cryptologos.cc/logos/vechain-vet-logo.png',
+    logo: 'https://assets.coingecko.com/coins/images/1167/large/VET_Token_Icon.png',
     description: 'VeChain is a blockchain platform designed to enhance supply chain management.',
     website: 'https://www.vechain.org',
     whitepaper: 'https://www.vechain.org/whitepaper/'
@@ -199,7 +199,7 @@ const TOP_50_POPULAR_CRYPTO_DATA = [
     id: 22, rank: 22, name: 'Monero', symbol: 'XMR',
     basePrice: 197.66, marketCap: 3580000000,
     chainId: 1, chainName: 'Ethereum', chainSymbol: 'ETH',
-    logo: 'https://cryptologos.cc/logos/monero-xmr-logo.png',
+    logo: 'https://assets.coingecko.com/coins/images/69/large/monero_logo.png',
     description: 'Monero is a private, secure, and untraceable cryptocurrency.',
     website: 'https://www.getmonero.org',
     whitepaper: 'https://cryptonote.org/whitepaper.pdf'
@@ -208,7 +208,7 @@ const TOP_50_POPULAR_CRYPTO_DATA = [
     id: 23, rank: 23, name: 'Cosmos', symbol: 'ATOM',
     basePrice: 7.84, marketCap: 3080000000,
     chainId: 1, chainName: 'Ethereum', chainSymbol: 'ETH',
-    logo: 'https://cryptologos.cc/logos/cosmos-atom-logo.png',
+    logo: 'https://assets.coingecko.com/coins/images/1481/large/cosmos_hub.png',
     description: 'Cosmos is an ecosystem of connected blockchains.',
     website: 'https://cosmos.network',
     whitepaper: 'https://cosmos.network/resources/whitepaper'
@@ -557,8 +557,8 @@ async function fetchTokenDetails(symbol: string) {
 }
 
 export async function GET(request: Request, { params }: RouteParams) {
+  const { symbol } = await params;
   try {
-    const { symbol } = await params
     console.log(`API: Fetching details for ${symbol}...`)
     
     // Add timeout protection for the token data fetch

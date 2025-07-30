@@ -15,6 +15,8 @@ export default function MobulaChart({ crypto, timeframe, height = 400, width = '
   const chartRef = useRef<HTMLDivElement>(null)
   const chartInstance = useRef<echarts.ECharts | null>(null)
   const chartId = useId()
+  const [isLoading, setIsLoading] = useState(true)
+  const [hasError, setHasError] = useState(false)
 
   // Generate realistic price data based on timeframe
   const chartData = useMemo(() => {
@@ -77,15 +79,19 @@ export default function MobulaChart({ crypto, timeframe, height = 400, width = '
   useEffect(() => {
     if (!chartRef.current) return
 
-    // Initialize chart if not exists
-    if (!chartInstance.current) {
-      chartInstance.current = echarts.init(chartRef.current, null, {
-        renderer: 'canvas',
-        useDirtyRect: false,
-      })
-    }
+    try {
+      setHasError(false)
+      setIsLoading(true)
 
-    const chart = chartInstance.current
+      // Initialize chart if not exists
+      if (!chartInstance.current) {
+        chartInstance.current = echarts.init(chartRef.current, null, {
+          renderer: 'canvas',
+          useDirtyRect: false,
+        })
+      }
+
+      const chart = chartInstance.current
 
     // Determine chart color based on overall trend
     const startPrice = chartData[0]?.[1] || crypto.price
@@ -112,7 +118,6 @@ export default function MobulaChart({ crypto, timeframe, height = 400, width = '
       
       xAxis: {
         type: 'time',
-        boundaryGap: false,
         axisLine: {
           show: false,
         },
@@ -250,17 +255,25 @@ export default function MobulaChart({ crypto, timeframe, height = 400, width = '
       ],
     }
 
-    chart.setOption(option, true)
+      chart.setOption(option, true)
+      
+      // Chart loaded successfully
+      setTimeout(() => setIsLoading(false), 100)
 
-    // Handle resize
-    const handleResize = () => {
-      chart.resize()
-    }
+      // Handle resize
+      const handleResize = () => {
+        chart.resize()
+      }
 
-    window.addEventListener('resize', handleResize)
+      window.addEventListener('resize', handleResize)
 
-    return () => {
-      window.removeEventListener('resize', handleResize)
+      return () => {
+        window.removeEventListener('resize', handleResize)
+      }
+    } catch (error) {
+      console.error('Chart initialization error:', error)
+      setHasError(true)
+      setIsLoading(false)
     }
   }, [chartData, timeframe, crypto.price])
 
@@ -273,16 +286,52 @@ export default function MobulaChart({ crypto, timeframe, height = 400, width = '
     }
   }, [])
 
+  if (hasError) {
+    return (
+      <div 
+        style={{ 
+          width: typeof width === 'number' ? `${width}px` : width,
+          height: typeof height === 'number' ? `${height}px` : height,
+          minHeight: '300px'
+        }}
+        className="w-full flex items-center justify-center bg-gray-50 rounded-lg border-2 border-dashed border-gray-200"
+      >
+        <div className="text-center p-8">
+          <div className="text-6xl mb-4">📊</div>
+          <div className="text-lg font-semibold text-gray-600 mb-2">Chart Loading Error</div>
+          <div className="text-sm text-gray-500">Unable to load price chart. Please refresh the page.</div>
+        </div>
+      </div>
+    )
+  }
+
   return (
-    <div 
-      id={chartId}
-      ref={chartRef} 
-      style={{ 
-        width: typeof width === 'number' ? `${width}px` : width,
-        height: typeof height === 'number' ? `${height}px` : height,
-        minHeight: '300px'
-      }}
-      className="w-full"
-    />
+    <div className="relative w-full">
+      {isLoading && (
+        <div 
+          style={{ 
+            width: typeof width === 'number' ? `${width}px` : width,
+            height: typeof height === 'number' ? `${height}px` : height,
+            minHeight: '300px'
+          }}
+          className="absolute inset-0 flex items-center justify-center bg-white bg-opacity-90 z-10"
+        >
+          <div className="text-center">
+            <div className="animate-spin w-8 h-8 border-4 border-blue-500 border-t-transparent rounded-full mx-auto mb-3"></div>
+            <div className="text-sm text-gray-600">Loading chart...</div>
+          </div>
+        </div>
+      )}
+      <div 
+        id={chartId}
+        ref={chartRef} 
+        style={{ 
+          width: typeof width === 'number' ? `${width}px` : width,
+          height: typeof height === 'number' ? `${height}px` : height,
+          minHeight: '300px'
+        }}
+        className="w-full"
+      />
+    </div>
   )
 }
